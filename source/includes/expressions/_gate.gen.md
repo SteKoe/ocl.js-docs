@@ -3,6 +3,7 @@
 ### AndExpression
 
 
+
 ```
 false and true
 ```
@@ -15,6 +16,7 @@ false and true
 | true  | true  | true    |
 <div class="clearboth"></div>
 ### ImpliesExpression
+
 
 
 ```
@@ -31,6 +33,7 @@ false implies true
 ### NotExpression
 
 
+
 ```
 not false
 ```
@@ -41,6 +44,7 @@ not false
 | false | true  |
 <div class="clearboth"></div>
 ### OrExpression
+
 
 
 ```
@@ -55,6 +59,7 @@ false or true
 | true  | true  | true   |
 <div class="clearboth"></div>
 ### XorExpression
+
 
 
 ```
