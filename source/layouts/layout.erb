@@ -87,6 +87,9 @@ under the License.
   </ul>
   <% if current_page.data.toc_footers %>
     <ul class="toc-footer">
+        <li class="text-italic">
+          v<%= config[:ocl_version] %>
+        </li>
       <% current_page.data.toc_footers.each do |footer| %>
         <li><%= footer %></li>
       <% end %>

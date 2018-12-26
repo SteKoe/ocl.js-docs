@@ -7,6 +7,7 @@ const handlebars = require('handlebars');
 const template = handlebars.compile(fs.readFileSync(__dirname + '/file.hbs', 'utf8'), {strict: true});
 
 const SOURCE_DIR = path.resolve(__dirname, '../../ocl.js/');
+const PACKAGE_JSON = path.resolve(SOURCE_DIR, './package.json');
 const COMPONENTS_DIR = path.resolve(SOURCE_DIR, './lib/components/');
 const OUTPUT_DIR = path.join(__dirname, '../source/includes');
 const JSON_OUTPUT_PATH = path.resolve('./tmp/dist.json');
@@ -31,13 +32,29 @@ const app = new typedoc.Application({
 
 
 let s = path.resolve(COMPONENTS_DIR + '/expressions/**/*.ts');
-glob(s, (err, files) => {
+glob(s, async (err, files) => {
     const src = app.expandInputFiles(files);
     const project = app.convert(src);
     app.generateJson(project, JSON_OUTPUT_PATH);
 
+    await createVersionFileInfo();
     processOutput();
 });
+
+function createVersionFileInfo() {
+    let pkg = require(PACKAGE_JSON);
+
+    let configFile = path.resolve(__dirname, '../config.rb');
+    return new Promise((resolve, reject) => fs.readFile(configFile, 'utf8', (err, content) => {
+        if (err) reject(err);
+
+        const newContent = content.replace(/@ocl_version = '(.*)'/g, `@ocl_version = '${pkg.version}'`);
+        fs.writeFile(configFile, newContent, 'utf8', () => {
+            if (err) reject(err);
+            resolve();
+        })
+    }));
+}
 
 function processOutput() {
     const templateData = require(JSON_OUTPUT_PATH);
@@ -48,7 +65,7 @@ function processOutput() {
             let filename = td.sources[0].fileName;
             let parts = filename.split('/');
 
-            const output = {
+            return {
                 title: td.name,
                 group: parts[parts.length - 2],
                 content: {
@@ -57,13 +74,10 @@ function processOutput() {
                     oclExpression: addOclExpression(td),
                     oclExample: addOclExample(td)
                 }
-            };
-
-            return output
+            }
         });
 
     let groups = [...new Set(filesToProcess.map(a => a.group).sort())];
-
     groups.map(group => filesToProcess.filter(f => f.group === group).sort((a, b) => a.title.localeCompare(b.title)))
         .forEach(writeGroup);
 }

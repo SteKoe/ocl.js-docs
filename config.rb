@@ -1,6 +1,9 @@
 # Unique header generation
 require './lib/unique_head.rb'
 
+@ocl_version = '1.2.0'
+set :ocl_version, @ocl_version
+
 # Markdown
 set :markdown_engine, :redcarpet
 set :markdown,

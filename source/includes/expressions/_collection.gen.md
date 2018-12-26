@@ -83,7 +83,7 @@ Operation which checks whether a collection contains an element specified by exp
 ### FirstExpression
 
 
-```ocl--exgample
+```ocl--example
 collection->first() : T
 ```
 
