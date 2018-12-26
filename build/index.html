@@ -307,6 +307,9 @@
       </li>
   </ul>
     <ul class="toc-footer">
+        <li class="text-italic">
+          v1.2.0
+        </li>
         <li><a href='https://github.com/SteKoe/ocl.js'>Source Code at GitHub</a></li>
     </ul>
 </div>
@@ -554,12 +557,10 @@ Hence, OCL.js can also be used to query objects, as well, without having the nee
 <blockquote>
 <p>When we want to specify a collection that is derived from some other collection, but which contains different
 objects from the original collection (i.e., it is not a sub-collection), we can use a collect operation.
-The collect operation uses the same syntax as the select and reject.
-<code>ocl--example
-collect(expr : OclExpression) : Collection
-</code></p>
+The collect operation uses the same syntax as the select and reject.</p>
 </blockquote>
-<pre class="highlight plaintext"><code>self.children-&gt;collect(age)
+<pre class="highlight plaintext"><code>collect(expr : OclExpression) : Collection
+</code></pre><pre class="highlight plaintext"><code>self.children-&gt;collect(age)
 </code></pre>
 <div class="clearboth"></div>
 <h3 id='existsexpression'>ExistsExpression</h3><pre class="highlight plaintext"><code>exists(expr : OclExpression) : Boolean
@@ -575,12 +576,10 @@ collect(expr : OclExpression) : Collection
 <h3 id='forallexpression'>ForAllExpression</h3>
 <blockquote>
 <p>Many times a constraint is needed on all elements of a collection.
-The forAll operation in OCL allows specifying a Boolean expression, which must hold for all objects in a collection.
-<code>ocl--example
-forAll(expr : oclExpression)
-</code></p>
+The forAll operation in OCL allows specifying a Boolean expression, which must hold for all objects in a collection.</p>
 </blockquote>
-
+<pre class="highlight plaintext"><code>forAll(expr : oclExpression)
+</code></pre>
 <div class="clearboth"></div>
 <h3 id='isemptyexpression'>IsEmptyExpression</h3><pre class="highlight plaintext"><code>isEmpty() : Boolean
 </code></pre><pre class="highlight plaintext"><code>self.cars-&gt;isEmpty()
@@ -613,12 +612,10 @@ forAll(expr : oclExpression)
 A reject is an operation on a collection and is specified using the arrow-syntax.
 This results in a collection that removes all the elements from collection for which the boolean-expression evaluates to true.
 To find the result of this expression, for each element in collection the expression boolean-expression is evaluated.
-If this evaluates to true, the element is excluded in the result collection, otherwise not.
-<code>ocl--example
-reject(expr : oclExpression) : Collection
-</code></p>
+If this evaluates to true, the element is excluded in the result collection, otherwise not.</p>
 </blockquote>
-<pre class="highlight plaintext"><code>self.customer-&gt;reject(underage)
+<pre class="highlight plaintext"><code>reject(expr : oclExpression) : Collection
+</code></pre><pre class="highlight plaintext"><code>self.customer-&gt;reject(underage)
 </code></pre>
 <div class="clearboth"></div>
 <h3 id='selectexpression'>SelectExpression</h3>
@@ -627,12 +624,10 @@ reject(expr : oclExpression) : Collection
 A select is an operation on a collection and is specified using the arrow-syntax.
 This results in a collection that contains all the elements from collection for which the boolean-expression evaluates to true.
 To find the result of this expression, for each element in collection the expression boolean-expression is evaluated.
-If this evaluates to true, the element is included in the result collection, otherwise not.
-<code>ocl--example
-select(expr : oclExpression) : Collection
-</code></p>
+If this evaluates to true, the element is included in the result collection, otherwise not.</p>
 </blockquote>
-<pre class="highlight plaintext"><code>self.collection-&gt;select(item | item.name = "random")
+<pre class="highlight plaintext"><code>select(expr : oclExpression) : Collection
+</code></pre><pre class="highlight plaintext"><code>self.collection-&gt;select(item | item.name = "random")
 </code></pre>
 <div class="clearboth"></div>
 <h3 id='sizeexpression'>SizeExpression</h3><pre class="highlight plaintext"><code>size() : Number
@@ -736,151 +731,57 @@ self.age &gt; 0
 <div class="clearboth"></div></p>
 <h2 id='gate'>Gate</h2><h3 id='andexpression'>AndExpression</h3><pre class="highlight plaintext"><code>false and true
 </code></pre>
-<table><thead>
-<tr>
-<th>A</th>
-<th>B</th>
-<th>A and B</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>false</td>
-<td>false</td>
-<td>false</td>
-</tr>
-<tr>
-<td>false</td>
-<td>true</td>
-<td>false</td>
-</tr>
-<tr>
-<td>true</td>
-<td>false</td>
-<td>false</td>
-</tr>
-<tr>
-<td>true</td>
-<td>true</td>
-<td>true</td>
-</tr>
-</tbody></table>
-
-<div class="clearboth"></div>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;    &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;   &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+A        B       A and B
+&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;    &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;   &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+false    false   false
+false    true    false
+true     false   false
+true     true    true
+&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;    &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;   &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+<div class="clearboth"></div></p>
 <h3 id='impliesexpression'>ImpliesExpression</h3><pre class="highlight plaintext"><code>false implies true
 </code></pre>
-<table><thead>
-<tr>
-<th>A</th>
-<th>B</th>
-<th>A implies B</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>false</td>
-<td>false</td>
-<td>true</td>
-</tr>
-<tr>
-<td>false</td>
-<td>true</td>
-<td>true</td>
-</tr>
-<tr>
-<td>true</td>
-<td>false</td>
-<td>false</td>
-</tr>
-<tr>
-<td>true</td>
-<td>true</td>
-<td>true</td>
-</tr>
-</tbody></table>
-
-<div class="clearboth"></div>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;    &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;   &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+A        B       A implies B
+&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;    &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;   &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+false    false   true
+false    true    true
+true     false   false
+true     true    true
+&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;    &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;   &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+<div class="clearboth"></div></p>
 <h3 id='notexpression'>NotExpression</h3><pre class="highlight plaintext"><code>not false
 </code></pre>
-<table><thead>
-<tr>
-<th>A</th>
-<th>NOT A</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>true</td>
-<td>false</td>
-</tr>
-<tr>
-<td>false</td>
-<td>true</td>
-</tr>
-</tbody></table>
-
-<div class="clearboth"></div>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;    &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+A        NOT A
+&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;    &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+true     false
+false    true
+&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;    &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+<div class="clearboth"></div></p>
 <h3 id='orexpression'>OrExpression</h3><pre class="highlight plaintext"><code>false or true
 </code></pre>
-<table><thead>
-<tr>
-<th>A</th>
-<th>B</th>
-<th>A or B</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>false</td>
-<td>false</td>
-<td>false</td>
-</tr>
-<tr>
-<td>false</td>
-<td>true</td>
-<td>true</td>
-</tr>
-<tr>
-<td>true</td>
-<td>false</td>
-<td>true</td>
-</tr>
-<tr>
-<td>true</td>
-<td>true</td>
-<td>true</td>
-</tr>
-</tbody></table>
-
-<div class="clearboth"></div>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;    &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;   &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+A        B       A or B
+&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;    &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;   &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+false    false   false
+false    true    true
+true     false   true
+true     true    true
+&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;    &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;   &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+<div class="clearboth"></div></p>
 <h3 id='xorexpression'>XorExpression</h3><pre class="highlight plaintext"><code>false xor true
 </code></pre>
-<table><thead>
-<tr>
-<th>A</th>
-<th>B</th>
-<th>A xor B</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>false</td>
-<td>false</td>
-<td>false</td>
-</tr>
-<tr>
-<td>false</td>
-<td>true</td>
-<td>true</td>
-</tr>
-<tr>
-<td>true</td>
-<td>false</td>
-<td>true</td>
-</tr>
-<tr>
-<td>true</td>
-<td>true</td>
-<td>false</td>
-</tr>
-</tbody></table>
-
-<div class="clearboth"></div>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;    &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;   &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+A        B       A xor B
+&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;    &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;   &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+false    false   false
+false    true    true
+true     false   true
+true     true    false
+&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;    &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;   &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+<div class="clearboth"></div></p>
 <h2 id='literal'>Literal</h2><h3 id='booleanexpression'>BooleanExpression</h3>
 <div class="clearboth"></div>
 <h3 id='nilexpression'>NilExpression</h3>
