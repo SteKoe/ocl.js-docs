@@ -1,4 +1,7 @@
 # Examples
+Despite the examples shown below, there are some examples included in the OCL.js respository.
+You can find examples for either [Node.js](https://github.com/SteKoe/ocl.js/tree/development/examples/node.js) or [webpack](https://github.com/SteKoe/ocl.js/tree/development/examples/webpack).
+
 ## Company
 
 ```typescript--example
