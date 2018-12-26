@@ -1,9 +1,6 @@
 ## Gate
 
 ### AndExpression
-
-
-
 ```
 false and true
 ```
@@ -16,9 +13,6 @@ false and true
 | true  | true  | true    |
 <div class="clearboth"></div>
 ### ImpliesExpression
-
-
-
 ```
 false implies true
 ```
@@ -31,9 +25,6 @@ false implies true
 | true  | true  | true        |
 <div class="clearboth"></div>
 ### NotExpression
-
-
-
 ```
 not false
 ```
@@ -44,9 +35,6 @@ not false
 | false | true  |
 <div class="clearboth"></div>
 ### OrExpression
-
-
-
 ```
 false or true
 ```
@@ -59,9 +47,6 @@ false or true
 | true  | true  | true   |
 <div class="clearboth"></div>
 ### XorExpression
-
-
-
 ```
 false xor true
 ```

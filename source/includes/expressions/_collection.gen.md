@@ -2,6 +2,7 @@
 
 ### AnyExpression
 
+
 ```ocl--example
 any(expr : OclExpression) : T
 ```
@@ -13,6 +14,7 @@ self.collection->any(i < 2)
 Returns the first element that validates the given expression.
 <div class="clearboth"></div>
 ### AppendExpression
+
 
 ```ocl--example
 append(elem : T) : Collection<T>
@@ -26,6 +28,7 @@ Appends the given element to the given collection and returns the extended colle
 <div class="clearboth"></div>
 ### AsSetExpression
 
+
 ```ocl--example
 asSet() : Collection
 ```
@@ -37,6 +40,7 @@ self.collection->asSet()
 Returns the given collection as set, containing unique entries.
 <div class="clearboth"></div>
 ### AtExpression
+
 
 ```ocl--example
 at(index : Number) : T
@@ -52,6 +56,7 @@ Returns the element of the collection at index index.
 > When we want to specify a collection that is derived from some other collection, but which contains different
 > objects from the original collection (i.e., it is not a sub-collection), we can use a collect operation.
 > The collect operation uses the same syntax as the select and reject.
+
 ```ocl--example
 collect(expr : OclExpression) : Collection
 ```
@@ -63,6 +68,7 @@ self.children->collect(age)
 
 <div class="clearboth"></div>
 ### ExistsExpression
+
 
 ```ocl--example
 exists(expr : OclExpression) : Boolean
@@ -76,7 +82,8 @@ Operation which checks whether a collection contains an element specified by exp
 <div class="clearboth"></div>
 ### FirstExpression
 
-```ocl--example
+
+```ocl--exgample
 collection->first() : T
 ```
 
@@ -89,6 +96,7 @@ Returns the first element of the collection.
 ### ForAllExpression
 > Many times a constraint is needed on all elements of a collection.
 > The forAll operation in OCL allows specifying a Boolean expression, which must hold for all objects in a collection.
+
 ```ocl--example
 forAll(expr : oclExpression)
 ```
@@ -97,6 +105,7 @@ forAll(expr : oclExpression)
 
 <div class="clearboth"></div>
 ### IsEmptyExpression
+
 
 ```ocl--example
 isEmpty() : Boolean
@@ -110,6 +119,7 @@ Returns true if self is empty, false otherwise.
 <div class="clearboth"></div>
 ### IsUniqueExpression
 
+
 ```ocl--example
 isUnique(expr : oclExpression) : boolean
 ```
@@ -121,6 +131,7 @@ self.collection->isUnique(self > 3)
 Returns true if the given expr evaluated on the body returns only different values.
 <div class="clearboth"></div>
 ### LastExpression
+
 
 ```ocl--example
 last() : T
@@ -134,6 +145,7 @@ Returns the last element of the collection.
 <div class="clearboth"></div>
 ### NotEmptyExpression
 
+
 ```ocl--example
 notEmpty() : Boolean
 ```
@@ -145,6 +157,7 @@ self.cars->notEmpty()
 Returns true if self is not empty, false otherwise.
 <div class="clearboth"></div>
 ### OneExpression
+
 
 ```ocl--example
 one(expr : oclExpression) : boolean
@@ -162,6 +175,7 @@ Returns true of there is exactly one element matching the given expression, fals
 > This results in a collection that removes all the elements from collection for which the boolean-expression evaluates to true.
 > To find the result of this expression, for each element in collection the expression boolean-expression is evaluated.
 > If this evaluates to true, the element is excluded in the result collection, otherwise not.
+
 ```ocl--example
 reject(expr : oclExpression) : Collection
 ```
@@ -178,6 +192,7 @@ self.customer->reject(underage)
 > This results in a collection that contains all the elements from collection for which the boolean-expression evaluates to true.
 > To find the result of this expression, for each element in collection the expression boolean-expression is evaluated.
 > If this evaluates to true, the element is included in the result collection, otherwise not.
+
 ```ocl--example
 select(expr : oclExpression) : Collection
 ```
@@ -189,6 +204,7 @@ self.collection->select(item | item.name = "random")
 
 <div class="clearboth"></div>
 ### SizeExpression
+
 
 ```ocl--example
 size() : Number
@@ -202,6 +218,7 @@ Returns the size of the given collection.
 <div class="clearboth"></div>
 ### SumExpression
 
+
 ```ocl--example
 sum() : Number
 ```
@@ -213,6 +230,7 @@ self.jobs.salary->sum()
 Returns the sum of all elements contained in self if they support the &#x27;+&#x27; operation.
 <div class="clearboth"></div>
 ### UnionExpression
+
 
 ```ocl--example
 union(c : Collection) : Collection

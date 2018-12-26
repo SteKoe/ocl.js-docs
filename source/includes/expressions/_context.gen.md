@@ -2,6 +2,7 @@
 
 ### ClassifierContextExpression
 
+
 ```ocl--example
 context <Type> (inv|def)
 ```
@@ -10,6 +11,7 @@ context <Type> (inv|def)
 Define invariants and definitions on a given types
 <div class="clearboth"></div>
 ### OperationContextExpression
+
 
 ```ocl--example
 context Person::kill() (pre|post)
@@ -23,6 +25,7 @@ context Person::setAge(age: number)
 The Operation Context Expression allows to define pre and or post conditions of functions.
 <div class="clearboth"></div>
 ### PropertyContextExpression
+
 
 ```ocl--example
 context Person::age (init|derive)

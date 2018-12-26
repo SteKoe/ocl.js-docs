@@ -2,6 +2,7 @@
 
 ### AbsExpression
 
+
 ```ocl--example
 Number::abs () : Number
 ```
@@ -13,6 +14,7 @@ Number::abs () : Number
 Returns the absolute value of self.
 <div class="clearboth"></div>
 ### AdditionExpression
+
 
 ```ocl--example
 Symbol: +
@@ -26,6 +28,7 @@ Addition
 <div class="clearboth"></div>
 ### DivExpression
 
+
 ```ocl--example
 Number::div ( i : Number ) : Number
 ```
@@ -37,6 +40,7 @@ Number::div ( i : Number ) : Number
 Returns the integer quotient of the division of self by *i*.
 <div class="clearboth"></div>
 ### DivideExpression
+
 
 ```ocl--example
 Symbol: /
@@ -50,6 +54,7 @@ Division
 <div class="clearboth"></div>
 ### MaxExpression
 
+
 ```ocl--example
 Number::max ( i : Number ) : Number
 ```
@@ -61,6 +66,7 @@ Number::max ( i : Number ) : Number
 Returns the greatest number of self and *i*.
 <div class="clearboth"></div>
 ### MinExpression
+
 
 ```ocl--example
 Number::min ( i : Number ) : Number
@@ -74,6 +80,7 @@ Returns the lowest number of self and *i*.
 <div class="clearboth"></div>
 ### ModuloExpression
 
+
 ```ocl--example
 Number::mod ( i : Number ) : Number
 ```
@@ -85,6 +92,7 @@ Number::mod ( i : Number ) : Number
 Returns the number remainder of the division of self by *i*.
 <div class="clearboth"></div>
 ### MultiplyExpression
+
 
 ```ocl--example
 Symbol: *
@@ -98,6 +106,7 @@ Multiply
 <div class="clearboth"></div>
 ### PowerExpression
 
+
 ```ocl--example
 Symbol: ^
 ```
@@ -110,6 +119,7 @@ Power
 <div class="clearboth"></div>
 ### RoundExpression
 
+
 ```ocl--example
 Number::round () : Number
 ```
@@ -118,6 +128,7 @@ Number::round () : Number
 Returns the nearest number to self.
 <div class="clearboth"></div>
 ### SqrtExpression
+
 
 ```ocl--example
 Number::sqrt () : Number
@@ -130,6 +141,7 @@ Number::sqrt () : Number
 Returns the square root of *self*.
 <div class="clearboth"></div>
 ### SubstractionExpression
+
 
 ```ocl--example
 Symbol: -

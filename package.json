@@ -1,0 +1,31 @@
+{
+  "name": "ocl.js-docs",
+  "version": "1.0.0",
+  "description": "This repository contains the documentation for OCL.js.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "clean:docs": "npx rimraf -- doc-test/**/*.gen.md",
+    "generate:docs": "npm run clean:docs && node docs-generator/generateDocs.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SteKoe/ocl.js-docs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SteKoe/ocl.js-docs/issues"
+  },
+  "homepage": "https://github.com/SteKoe/ocl.js-docs#readme",
+  "devDependencies": {
+    "glob": "^7.1.3",
+    "handlebars": "^4.0.12",
+    "mkdirp": "^0.5.1",
+    "rimraf": "^2.6.2",
+    "typedoc": "^0.13.0"
+  }
+}

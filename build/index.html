@@ -1,0 +1,998 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>OCL.js</title>
+
+  <style>
+    .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .cd {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+  </style>
+  <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+  <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+    <script src="javascripts/all.js"></script>
+</head>
+
+<body class="index" data-languages="[&quot;typescript&quot;,&quot;javascript&quot;]">
+<a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" alt="Navbar" />
+      </span>
+</a>
+<div class="toc-wrapper">
+  <img src="images/logo.png" class="logo" alt="Logo" />
+    <div class="lang-selector">
+          <a href="#" data-language-name="typescript">TypeScript</a>
+          <a href="#" data-language-name="javascript">JavaScript</a>
+    </div>
+    <div class="search">
+      <input type="text" class="search" id="input-search" placeholder="Search">
+    </div>
+    <ul class="search-results"></ul>
+  <ul id="toc" class="toc-list-h1">
+      <li>
+        <a href="#usage" class="toc-h1 toc-link" data-title="Usage">Usage</a>
+          <ul class="toc-list-h2">
+              <li>
+                <a href="#installation" class="toc-h2 toc-link" data-title="Installation">Installation</a>
+              </li>
+              <li>
+                <a href="#example-basic-usage" class="toc-h2 toc-link" data-title="Example: Basic usage">Example: Basic usage</a>
+              </li>
+          </ul>
+      </li>
+      <li>
+        <a href="#api" class="toc-h1 toc-link" data-title="API">API</a>
+          <ul class="toc-list-h2">
+              <li>
+                <a href="#create-oclengine" class="toc-h2 toc-link" data-title="create() : OclEngine">create() : OclEngine</a>
+              </li>
+              <li>
+                <a href="#settypedeterminer-fn-function-void" class="toc-h2 toc-link" data-title="setTypeDeterminer(fn : Function) : void">setTypeDeterminer(fn : Function) : void</a>
+              </li>
+              <li>
+                <a href="#registertypes-list-map-void" class="toc-h2 toc-link" data-title="registerTypes(list : Map) : void">registerTypes(list : Map) : void</a>
+              </li>
+              <li>
+                <a href="#registerenum" class="toc-h2 toc-link" data-title="registerEnum">registerEnum</a>
+              </li>
+              <li>
+                <a href="#addoclexpression-oclexpression-string-labels-array-oclengine" class="toc-h2 toc-link" data-title="addOclExpression(oclExpression : string, labels? : Array) : OclEngine">addOclExpression(oclExpression : string, labels? : Array<string>) : OclEngine</string></a>
+              </li>
+              <li>
+                <a href="#addoclexpressions-oclexpressions-array-labels-array-oclengine" class="toc-h2 toc-link" data-title="addOclExpressions(oclExpressions : Array, labels? : Array) : OclEngine">addOclExpressions(oclExpressions : Array<string>, labels? : Array<string>) : OclEngine</string></string></a>
+              </li>
+              <li>
+                <a href="#removeoclexpression-oclexpression-string-oclengine" class="toc-h2 toc-link" data-title="removeOclExpression(oclExpression : string) : OclEngine">removeOclExpression(oclExpression : string) : OclEngine</a>
+              </li>
+              <li>
+                <a href="#clearalloclexpressions-oclengine" class="toc-h2 toc-link" data-title="clearAllOclExpressions : OclEngine">clearAllOclExpressions : OclEngine</a>
+              </li>
+              <li>
+                <a href="#evaluate-obj-any-labels-array-oclresult" class="toc-h2 toc-link" data-title="evaluate(obj : any, labels? : Array) : OclResult">evaluate(obj : any, labels? : Array<string>) : OclResult</string></a>
+              </li>
+              <li>
+                <a href="#createquery-query-string-expression" class="toc-h2 toc-link" data-title="createQuery(query : string) : Expression">createQuery(query : string) : Expression</a>
+              </li>
+              <li>
+                <a href="#evaluatequery-obj-any-oclexpression-expression-any" class="toc-h2 toc-link" data-title="evaluateQuery(obj : any, oclExpression : Expression) : any">evaluateQuery(obj : any, oclExpression : Expression) : any</a>
+              </li>
+          </ul>
+      </li>
+      <li>
+        <a href="#examples" class="toc-h1 toc-link" data-title="Examples">Examples</a>
+          <ul class="toc-list-h2">
+              <li>
+                <a href="#company" class="toc-h2 toc-link" data-title="Company">Company</a>
+              </li>
+              <li>
+                <a href="#person" class="toc-h2 toc-link" data-title="Person">Person</a>
+              </li>
+          </ul>
+      </li>
+      <li>
+        <a href="#implemented-language-features" class="toc-h1 toc-link" data-title="Implemented Language Features">Implemented Language Features</a>
+          <ul class="toc-list-h2">
+              <li>
+                <a href="#collection" class="toc-h2 toc-link" data-title="Collection">Collection</a>
+              </li>
+              <li>
+                <a href="#context" class="toc-h2 toc-link" data-title="Context">Context</a>
+              </li>
+              <li>
+                <a href="#expressions" class="toc-h2 toc-link" data-title="Expressions">Expressions</a>
+              </li>
+              <li>
+                <a href="#gate" class="toc-h2 toc-link" data-title="Gate">Gate</a>
+              </li>
+              <li>
+                <a href="#literal" class="toc-h2 toc-link" data-title="Literal">Literal</a>
+              </li>
+              <li>
+                <a href="#math" class="toc-h2 toc-link" data-title="Math">Math</a>
+              </li>
+              <li>
+                <a href="#string" class="toc-h2 toc-link" data-title="String">String</a>
+              </li>
+          </ul>
+      </li>
+  </ul>
+    <ul class="toc-footer">
+        <li><a href='https://github.com/SteKoe/ocl.js'>Source Code at GitHub</a></li>
+    </ul>
+</div>
+<div class="page-wrapper">
+  <div class="dark-box"></div>
+  <div class="content">
+    <p align="center">
+  <a href="https://ocl.stekoe.de">
+    <img alt="OCL.js" src="https://raw.githubusercontent.com/stekoe/ocl.js/master/logo.png" width="250">
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://travis-ci.org/SteKoe/ocl.js"><img alt="Travis Status" src="https://img.shields.io/travis/SteKoe/ocl.js/master.svg"></a>
+  <a href="https://david-dm.org/SteKoe/ocl.js#info=devDependencies"><img alt="devDependency Status" src="https://david-dm.org/SteKoe/ocl.js/dev-status.svg"></a>
+  <a href="https://github.com/SteKoe/ocl.js"><img alt="License: MIT" src="https://img.shields.io/github/license/mashape/apistatus.svg"></a>
+  <a href="https://www.npmjs.com/package/@stekoe/ocl.js"><img alt="npm (scoped)" src="https://img.shields.io/npm/v/@stekoe/ocl.js.svg"></a>
+</p>
+
+<p>The Object Constraint Language (OCL) is a language for describing rules that apply to MOF conform modelling languages like UML.
+The OCL is a text based language that provides constraint and object query expressions that cannot be expressed by a meta modelling language.</p>
+
+<p>The Object-Constraint-Language is used to add additional constraints to a given modelling language. Since there do exist implementations in Java (e.g. Eclipse Modelling Framework (EMF)) but not JavaScript, this is a basic OCL implementation in JavaScript.</p>
+
+<p>This library does not claim to be fully compliant to the given OMG OCL definition and might have slight differences.</p>
+<h1 id='usage'>Usage</h1><h2 id='installation'>Installation</h2><pre class="highlight shell"><code><span class="gp">$ </span>npm install @stekoe/ocl.js --save
+</code></pre>
+<p>OCL.js is entirely written in JavaScript and is <a href="https://www.npmjs.com/package/@stekoe/ocl.js">published to npm</a> so you can either install it with npm or <a href="https://yarnpkg.com">yarn</a>. 
+It is designed to run either in an node environment or in the browser.</p>
+
+<p>As alternative, you can also download the ocl.min.js file from GitHub and include that to your code.</p>
+<h2 id='example-basic-usage'>Example: Basic usage</h2><pre class="highlight typescript tab-typescript typescript"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">OCLEngine</span> <span class="p">}</span> <span class="k">from</span> <span class="s2">"@stekoe/ocl.js"</span>
+
+<span class="c1">// Define OCL rule</span>
+<span class="kd">const</span> <span class="nx">myOclExpression</span> <span class="o">=</span> <span class="s2">`
+    context Person
+        inv: self.parents-&gt;forAll(p | p &lt;&gt; self)
+`</span><span class="p">;</span>
+
+<span class="c1">// Instantiate the OclEngine here</span>
+<span class="kd">const</span> <span class="nx">oclEngine</span> <span class="o">=</span> <span class="nx">OclEngine</span><span class="p">.</span><span class="nx">create</span><span class="p">();</span>
+
+<span class="c1">// Add your first OCL expression here</span>
+<span class="nx">oclEngine</span><span class="p">.</span><span class="nx">addOclExpression</span><span class="p">(</span><span class="nx">myOclExpression</span><span class="p">);</span>
+
+<span class="c1">// Evaluate an object obj against all know OCL expressions</span>
+<span class="kd">const</span> <span class="nx">oclResult</span> <span class="o">=</span> <span class="nx">oclEngine</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span>
+</code></pre><pre class="highlight javascript tab-javascript javascript"><code><span class="kr">const</span> <span class="nx">OclEngine</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"@stekoe/ocl.js"</span><span class="p">).</span><span class="nx">OclEngine</span><span class="p">;</span>
+
+<span class="c1">// Define OCL rule</span>
+<span class="kr">const</span> <span class="nx">myOclExpression</span> <span class="o">=</span> <span class="s2">`
+    context Person
+        inv: self.parents-&gt;forAll(p | p &lt;&gt; self)
+`</span><span class="p">;</span>
+
+<span class="c1">// Instantiate the OclEngine here</span>
+<span class="kr">const</span> <span class="nx">oclEngine</span> <span class="o">=</span> <span class="nx">OclEngine</span><span class="p">.</span><span class="nx">create</span><span class="p">();</span>
+
+<span class="c1">// Add your first OCL expression here</span>
+<span class="nx">oclEngine</span><span class="p">.</span><span class="nx">addOclExpression</span><span class="p">(</span><span class="nx">myOclExpression</span><span class="p">);</span>
+
+<span class="c1">// Evaluate an object obj against all know OCL expressions</span>
+<span class="kr">const</span> <span class="nx">oclResult</span> <span class="o">=</span> <span class="nx">oclEngine</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span>
+</code></pre>
+<p>When adding OCL.js via npm, you can start using it via importing the OCLEngine that is provided by “@stekoe/ocl.js”.</p>
+
+<p>The resulting <code>oclResult</code> object contains three fields: </p>
+
+<ol>
+<li><code>result</code> contains the actual result of the evaluation run as a boolean value </li>
+<li><code>namesOfFailedInvs</code> contains the names of failed invariants or <code>anonymous</code> if none has been provided</li>
+<li><code>evaluatedContexts</code> contains all <code>ContextExpressions</code> that have been evaluated </li>
+</ol>
+<h1 id='api'>API</h1><h2 id='create-oclengine'>create() : OclEngine</h2><pre class="highlight typescript tab-typescript typescript"><code><span class="kd">const</span> <span class="nx">oclEngine</span> <span class="o">=</span> <span class="nx">OclEngine</span><span class="p">.</span><span class="nx">create</span><span class="p">();</span>
+</code></pre>
+<p>Instead of using the constructor, this function can be used to create a new <code>OclEngine</code> instance.</p>
+<h2 id='settypedeterminer-fn-function-void'>setTypeDeterminer(fn : Function) : void</h2><pre class="highlight typescript tab-typescript typescript"><code><span class="kr">class</span> <span class="nx">MyCustomType</span> <span class="p">{</span>
+  <span class="k">private</span> <span class="nx">_type</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">oclEngine</span><span class="p">.</span><span class="nx">setTypeDeterminer</span><span class="p">(</span><span class="nx">obj</span> <span class="o">=&gt;</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">_type</span><span class="p">);</span>
+</code></pre>
+<p>In order to let OCL.js determine the correct object instance for a context, there is a basic type detection implemented by default.
+The basic implementation tries to determine the type of the given object by accessing the property <code>typeName</code>. 
+If that property is not available, the name of the constructor is about to be determined.
+If there is no type information available, <code>Object</code> will be returned as most abstract type.</p>
+
+<p>There might be cases where the build-in type detection function is not sufficient, hence it is possible to provide a custom function for that.
+Assumed that the discriminator for an object type is part of the given instance (e.g. a field called <code>_type</code>) then a custom function which determines the actual type can be provided.</p>
+
+<p>Let’s say there is a class <code>MyCustomType</code> that contains the field <code>_type</code> as discriminator.</p>
+
+<p>Whenever the OCL engine has to check the context, the custom function that is passed to <code>setTypeDeterminer</code> will be called.</p>
+<h2 id='registertypes-list-map-void'>registerTypes(list : Map) : void</h2><pre class="highlight typescript tab-typescript typescript"><code><span class="kd">const</span> <span class="nx">customTypes</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s2">"Person"</span><span class="p">:</span> <span class="kr">class</span> <span class="nx">Person</span> <span class="p">{</span> <span class="cm">/* implementation */</span> <span class="p">}</span> 
+<span class="p">}</span>
+
+<span class="nx">oclEngine</span><span class="p">.</span><span class="nx">registerTypes</span><span class="p">(</span><span class="nx">customTypes</span><span class="p">);</span>
+</code></pre>
+<p>In order to register custom types, this function takes a map as argument.
+The key of the map is used to lookup a specific type even if the code is minified.
+By adding custom types, ocl functions like <code>oclIsTypeOf</code> and <code>oclIsKindOf</code> work more properly. </p>
+<h2 id='registerenum'>registerEnum</h2><pre class="highlight typescript tab-typescript typescript"><code><span class="kd">const</span> <span class="nx">Gender</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">FEMALE</span><span class="p">:</span> <span class="s1">'female'</span><span class="p">,</span>
+    <span class="na">MALE</span><span class="p">:</span> <span class="s1">'male'</span><span class="p">,</span>
+    <span class="na">OTHER</span><span class="p">:</span> <span class="s1">'other'</span>
+<span class="p">}</span>
+
+<span class="nx">oclEngine</span><span class="p">.</span><span class="nx">registerEnum</span><span class="p">(</span><span class="s1">'Gender'</span><span class="p">,</span> <span class="nx">Gender</span><span class="p">);</span>
+</code></pre>
+<p>Whenever the use of enumerations is necessary, the enumeration has to be registered to the OCL Engine in order to let it parse the correct values.</p>
+
+<p>Registering an enumeration is possible via the function <code>registerEnum(name : string, values : object)</code>.
+Let&#39;s assume one has defined an enumeration for <code>Gender</code>, it has to be registered to the OCL Engine as follows:</p>
+<h2 id='addoclexpression-oclexpression-string-labels-array-oclengine'>addOclExpression(oclExpression : string, labels? : Array<string>) : OclEngine</h2><pre class="highlight typescript tab-typescript typescript"><code><span class="kd">const</span> <span class="nx">oclExpression</span> <span class="o">=</span> <span class="s2">`
+    context Person inv: self.name-&gt;notEmpty()
+`</span><span class="p">;</span>
+<span class="nx">oclEngine</span><span class="p">.</span><span class="nx">addOclExpression</span><span class="p">(</span><span class="nx">oclExpression</span><span class="p">);</span>
+</code></pre><pre class="highlight typescript tab-typescript typescript"><code><span class="kd">const</span> <span class="nx">oclExpression</span> <span class="o">=</span> <span class="s2">`
+    context Person inv: self.name-&gt;notEmpty()
+    context Person inv: self.age &gt; 0
+`</span><span class="p">;</span>
+<span class="nx">oclEngine</span><span class="p">.</span><span class="nx">addOclExpression</span><span class="p">(</span><span class="nx">oclExpression</span><span class="p">);</span>
+</code></pre>
+<p>Via this function, new OCL expressions can be added to the engine.
+It is possible to define one context per function call or multiple contexts at one.</p>
+
+<p>The second argument <code>label</code> can be used to tag OCL expressions.
+This is useful when just a subset of rules should be evaluated.
+The rules that should be used during evaluation phase can be specified when calling <code>evaluate</code> function.</p>
+<h2 id='addoclexpressions-oclexpressions-array-labels-array-oclengine'>addOclExpressions(oclExpressions : Array<string>, labels? : Array<string>) : OclEngine</h2><pre class="highlight typescript tab-typescript typescript"><code><span class="kd">const</span> <span class="nx">oclExpressions</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="s1">'context Person inv: self.name-&gt;notEmpty()'</span><span class="p">,</span>
+  <span class="s1">'context Person inv: self.age &gt; 0'</span>
+<span class="p">];</span>
+<span class="nx">oclEngine</span><span class="p">.</span><span class="nx">addOclExpression</span><span class="p">(</span><span class="nx">oclExpressions</span><span class="p">);</span>
+</code></pre>
+<p>Instead of passing a big blob of text, containing all OCL rules, it is also possible to pass in an array of OCL expressions.
+For each OCL expression in the array, the function <code>addOclExpression</code> will be called.</p>
+<h2 id='removeoclexpression-oclexpression-string-oclengine'>removeOclExpression(oclExpression : string) : OclEngine</h2>
+<p>Removes an already registered OCL rule.</p>
+<h2 id='clearalloclexpressions-oclengine'>clearAllOclExpressions : OclEngine</h2>
+<p>Removes all registered OCL rules.</p>
+<h2 id='evaluate-obj-any-labels-array-oclresult'>evaluate(obj : any, labels? : Array<string>) : OclResult</h2>
+<p>This function runs the evaluation process for the given object <code>obj</code>.
+The OCL engine tries to determine the type of the given object and then runs all context definitions / rules that match the type.
+As a result an object is returned that offers three methods:</p>
+
+<ol>
+<li><code>getResult() : boolean</code>: Returns the result of each and every OCL rule that has been run for the given object.</li>
+<li><code>getNamesOfFailedInvs() : Array&lt;string&gt;</code>: Returns the names of invariants that have evaluated to <code>false</code>.</li>
+<li><code>getEvaluatedContexts() : Array&lt;ContextExpression&gt;</code>: Returns all the context expressions that have been evaluated.</li>
+</ol>
+<h2 id='createquery-query-string-expression'>createQuery(query : string) : Expression</h2><pre class="highlight typescript tab-typescript typescript"><code><span class="kd">const</span> <span class="nx">expression</span> <span class="o">=</span> <span class="nx">oclEngine</span><span class="p">.</span><span class="nx">createQuery</span><span class="p">(</span><span class="s1">'self-&gt;any(i | i &lt; 1)'</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">oclEngine</span><span class="p">.</span><span class="nx">evaluateQuery</span><span class="p">([</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">],</span> <span class="nx">expression</span><span class="p">);</span>
+<span class="c1">// result will now be [0.9]</span>
+</code></pre>
+<p>Even though the OCL is created to check for constraints, a big part of it is about querying objects and object properties.
+Hence, OCL.js can also be used to query objects, as well, without having the need to run an evaluation.</p>
+<h2 id='evaluatequery-obj-any-oclexpression-expression-any'>evaluateQuery(obj : any, oclExpression : Expression) : any</h2>
+<p>Runs the given <code>oclExpression</code> on the object <code>obj</code>.</p>
+<h1 id='examples'>Examples</h1><h2 id='company'>Company</h2><pre class="highlight typescript tab-typescript--example typescript--example"><code><span class="k">export</span> <span class="kr">class</span> <span class="nx">Company</span> <span class="p">{</span>
+    <span class="nl">name</span> <span class="p">:</span> <span class="nb">String</span><span class="p">;</span>
+    <span class="nl">employee</span><span class="p">:</span> <span class="nx">Person</span><span class="p">[];</span>
+    <span class="nl">manager</span><span class="p">:</span> <span class="nx">Person</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="kr">class</span> <span class="nx">Person</span> <span class="p">{</span>
+    <span class="nl">name</span> <span class="p">:</span> <span class="nb">String</span><span class="p">;</span>
+    <span class="nl">age</span> <span class="p">:</span> <span class="nb">Number</span><span class="p">;</span>
+    <span class="nl">isUnemployed</span><span class="p">:</span> <span class="kr">boolean</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre><pre class="highlight typescript tab-typescript--example typescript--example"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">OclEngine</span> <span class="p">}</span> <span class="k">from</span> <span class="s2">"@stekoe/ocl.js"</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Company</span><span class="p">,</span> <span class="nx">Person</span> <span class="p">}</span> <span class="k">from</span> <span class="s2">"./company.js"</span>
+
+<span class="kd">const</span> <span class="nx">oclEngine</span> <span class="o">=</span> <span class="nx">OclEngine</span><span class="p">.</span><span class="nx">create</span><span class="p">();</span>
+
+<span class="nx">oclEngine</span><span class="p">.</span><span class="nx">addOclExpression</span><span class="p">(</span><span class="s2">`
+    -- No one should work that long...
+    context Company inv:
+        self.employee-&gt;forAll(p : Person | p.age &lt;= 65 )
+
+    -- If a company has a manager, 
+    -- the company has at least one employee.
+    context Company
+        inv: self.manager.isUnemployed = false
+        inv: self.employee-&gt;notEmpty()
+`</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">company</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Company</span><span class="p">();</span>
+<span class="nx">company</span><span class="p">.</span><span class="nx">employee</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="k">new</span> <span class="nx">Person</span><span class="p">());</span>
+
+<span class="kd">const</span> <span class="nx">oclResult</span> <span class="o">=</span> <span class="nx">oclEngine</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">company</span><span class="p">);</span>
+</code></pre><h2 id='person'>Person</h2><pre class="highlight typescript tab-typescript--example typescript--example"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">OclEngine</span> <span class="p">}</span> <span class="k">from</span> <span class="s2">"@stekoe/ocl.js"</span>
+
+<span class="kr">class</span> <span class="nx">Person</span> <span class="p">{</span>
+    <span class="nl">name</span> <span class="p">:</span> <span class="nb">String</span><span class="p">;</span>
+    <span class="nl">age</span> <span class="p">:</span> <span class="nb">Number</span><span class="p">;</span>
+    <span class="nl">children</span> <span class="p">:</span> <span class="nx">Person</span><span class="p">[];</span>
+    <span class="nl">isMarried</span> <span class="p">:</span> <span class="nb">Boolean</span><span class="p">;</span>
+    <span class="nl">husband</span> <span class="p">:</span> <span class="nx">Person</span><span class="p">;</span>
+    <span class="nl">wife</span> <span class="p">:</span> <span class="nx">Person</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">oclResult</span> <span class="o">=</span> <span class="nx">OclEngine</span><span class="p">.</span><span class="nx">create</span><span class="p">()</span>
+  <span class="p">.</span><span class="nx">addOclExpression</span><span class="p">(</span><span class="s2">`
+      -- Check that underage persons are not married
+      context Person inv:
+          age &lt; 18 implies isMarried = false
+
+      -- Check that each and every children is younger than 18 years old
+      context Person inv:
+          children-&gt;select(age &gt;= 18)-&gt;isEmpty()
+
+      -- If a person is married, wife or husband has to be at least 18 years old
+      context Person inv:
+          self.wife-&gt;notEmpty() implies self.wife.age &gt;= 18 and
+          self.husband-&gt;notEmpty() implies self.husband.age &gt;= 18
+
+      -- If there are children, one should be named Stephan ;)
+      context Person inv:
+          self.children-&gt;exists(child | child.name = 'Stephan')
+  `</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="k">new</span> <span class="nx">Person</span><span class="p">());</span>
+</code></pre><h1 id='implemented-language-features'>Implemented Language Features</h1><h2 id='collection'>Collection</h2><h3 id='anyexpression'>AnyExpression</h3><pre class="highlight plaintext"><code>any(expr : OclExpression) : T
+</code></pre><pre class="highlight plaintext"><code>self.collection-&gt;any(i &lt; 2)
+</code></pre>
+<p>Returns the first element that validates the given expression.
+<div class="clearboth"></div></p>
+<h3 id='appendexpression'>AppendExpression</h3><pre class="highlight plaintext"><code>append(elem : T) : Collection&lt;T&gt;
+</code></pre><pre class="highlight plaintext"><code>self.collection-&gt;append("string")
+</code></pre>
+<p>Appends the given element to the given collection and returns the extended collection.
+<div class="clearboth"></div></p>
+<h3 id='assetexpression'>AsSetExpression</h3><pre class="highlight plaintext"><code>asSet() : Collection
+</code></pre><pre class="highlight plaintext"><code>self.collection-&gt;asSet()
+</code></pre>
+<p>Returns the given collection as set, containing unique entries.
+<div class="clearboth"></div></p>
+<h3 id='atexpression'>AtExpression</h3><pre class="highlight plaintext"><code>at(index : Number) : T
+</code></pre><pre class="highlight plaintext"><code>self.collection-&gt;at(2)
+</code></pre>
+<p>Returns the element of the collection at index index.
+<div class="clearboth"></div></p>
+<h3 id='collectexpression'>CollectExpression</h3>
+<blockquote>
+<p>When we want to specify a collection that is derived from some other collection, but which contains different
+objects from the original collection (i.e., it is not a sub-collection), we can use a collect operation.
+The collect operation uses the same syntax as the select and reject.
+<code>ocl--example
+collect(expr : OclExpression) : Collection
+</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>self.children-&gt;collect(age)
+</code></pre>
+<div class="clearboth"></div>
+<h3 id='existsexpression'>ExistsExpression</h3><pre class="highlight plaintext"><code>exists(expr : OclExpression) : Boolean
+</code></pre><pre class="highlight plaintext"><code>self.collection-&gt;exists(i | i &lt; 2)
+</code></pre>
+<p>Operation which checks whether a collection contains an element specified by expr.
+<div class="clearboth"></div></p>
+<h3 id='firstexpression'>FirstExpression</h3><pre class="highlight plaintext"><code>collection-&gt;first() : T
+</code></pre><pre class="highlight plaintext"><code>self.collection-&gt;first()
+</code></pre>
+<p>Returns the first element of the collection.
+<div class="clearboth"></div></p>
+<h3 id='forallexpression'>ForAllExpression</h3>
+<blockquote>
+<p>Many times a constraint is needed on all elements of a collection.
+The forAll operation in OCL allows specifying a Boolean expression, which must hold for all objects in a collection.
+<code>ocl--example
+forAll(expr : oclExpression)
+</code></p>
+</blockquote>
+
+<div class="clearboth"></div>
+<h3 id='isemptyexpression'>IsEmptyExpression</h3><pre class="highlight plaintext"><code>isEmpty() : Boolean
+</code></pre><pre class="highlight plaintext"><code>self.cars-&gt;isEmpty()
+</code></pre>
+<p>Returns true if self is empty, false otherwise.
+<div class="clearboth"></div></p>
+<h3 id='isuniqueexpression'>IsUniqueExpression</h3><pre class="highlight plaintext"><code>isUnique(expr : oclExpression) : boolean
+</code></pre><pre class="highlight plaintext"><code>self.collection-&gt;isUnique(self &gt; 3)
+</code></pre>
+<p>Returns true if the given expr evaluated on the body returns only different values.
+<div class="clearboth"></div></p>
+<h3 id='lastexpression'>LastExpression</h3><pre class="highlight plaintext"><code>last() : T
+</code></pre><pre class="highlight plaintext"><code>self.collection-&gt;last()
+</code></pre>
+<p>Returns the last element of the collection.
+<div class="clearboth"></div></p>
+<h3 id='notemptyexpression'>NotEmptyExpression</h3><pre class="highlight plaintext"><code>notEmpty() : Boolean
+</code></pre><pre class="highlight plaintext"><code>self.cars-&gt;notEmpty()
+</code></pre>
+<p>Returns true if self is not empty, false otherwise.
+<div class="clearboth"></div></p>
+<h3 id='oneexpression'>OneExpression</h3><pre class="highlight plaintext"><code>one(expr : oclExpression) : boolean
+</code></pre><pre class="highlight plaintext"><code>self.collection-&gt;one(age &lt; 18)
+</code></pre>
+<p>Returns true of there is exactly one element matching the given expression, false otherwise.
+<div class="clearboth"></div></p>
+<h3 id='rejectexpression'>RejectExpression</h3>
+<blockquote>
+<p>The reject operation specifies a subset of a collection.
+A reject is an operation on a collection and is specified using the arrow-syntax.
+This results in a collection that removes all the elements from collection for which the boolean-expression evaluates to true.
+To find the result of this expression, for each element in collection the expression boolean-expression is evaluated.
+If this evaluates to true, the element is excluded in the result collection, otherwise not.
+<code>ocl--example
+reject(expr : oclExpression) : Collection
+</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>self.customer-&gt;reject(underage)
+</code></pre>
+<div class="clearboth"></div>
+<h3 id='selectexpression'>SelectExpression</h3>
+<blockquote>
+<p>The select operation specifies a subset of a collection.
+A select is an operation on a collection and is specified using the arrow-syntax.
+This results in a collection that contains all the elements from collection for which the boolean-expression evaluates to true.
+To find the result of this expression, for each element in collection the expression boolean-expression is evaluated.
+If this evaluates to true, the element is included in the result collection, otherwise not.
+<code>ocl--example
+select(expr : oclExpression) : Collection
+</code></p>
+</blockquote>
+<pre class="highlight plaintext"><code>self.collection-&gt;select(item | item.name = "random")
+</code></pre>
+<div class="clearboth"></div>
+<h3 id='sizeexpression'>SizeExpression</h3><pre class="highlight plaintext"><code>size() : Number
+</code></pre><pre class="highlight plaintext"><code>self.collection-&gt;size()
+</code></pre>
+<p>Returns the size of the given collection.
+<div class="clearboth"></div></p>
+<h3 id='sumexpression'>SumExpression</h3><pre class="highlight plaintext"><code>sum() : Number
+</code></pre><pre class="highlight plaintext"><code>self.jobs.salary-&gt;sum()
+</code></pre>
+<p>Returns the sum of all elements contained in self if they support the &#x27;+&#x27; operation.
+<div class="clearboth"></div></p>
+<h3 id='unionexpression'>UnionExpression</h3><pre class="highlight plaintext"><code>union(c : Collection) : Collection
+</code></pre><pre class="highlight plaintext"><code>self.collection-&gt;union(self.anotherCollection)
+</code></pre>
+<p>Returns a collection containing all elements of self and all elements of the passed in collection.
+<div class="clearboth"></div></p>
+<h2 id='context'>Context</h2><h3 id='classifiercontextexpression'>ClassifierContextExpression</h3><pre class="highlight plaintext"><code>context &lt;Type&gt; (inv|def)
+</code></pre>
+<p>Define invariants and definitions on a given types
+<div class="clearboth"></div></p>
+<h3 id='operationcontextexpression'>OperationContextExpression</h3><pre class="highlight plaintext"><code>context Person::kill() (pre|post)
+</code></pre><pre class="highlight plaintext"><code>context Person::setAge(age: number)
+   pre: age &gt; 0
+</code></pre>
+<p>The Operation Context Expression allows to define pre and or post conditions of functions.
+<div class="clearboth"></div></p>
+<h3 id='propertycontextexpression'>PropertyContextExpression</h3><pre class="highlight plaintext"><code>context Person::age (init|derive)
+</code></pre>
+<p>A PropertyContextDefinition allows to initialize or derive a value for the targeted property.
+<div class="clearboth"></div></p>
+<h2 id='expressions'>Expressions</h2><h3 id='defexpression'>DefExpression</h3>
+<blockquote>
+<p>The Let expression allows a variable to be used in one OCL expression.
+To enable reuse of variables/operations over multiple OCL expressions one can use a Constraint with the stereotype «definition», in which helper variables/operations are defined.
+This «definition» Constraint must be attached to a Classifier and may only contain variable and/or operation definitions, nothing else.
+All variables and operations defined in the «definition» constraint are known in the same context as where any property of the Classifier can be used.
+Such variables and operations are attributes and operations with stereotype «OclHelper» of the classifier.
+They are used in an OCL expression in exactly the same way as normal attributes or operations are used.
+The syntax of the attribute or operation definitions is similar to the Let expression, but each attribute and operation definition is prefixed with the keyword ‘def’ as shown below.</p>
+</blockquote>
+<pre class="highlight plaintext"><code>context Person def:
+income : Integer = self.job.salary-&gt;sum()
+</code></pre>
+<div class="clearboth"></div>
+<h3 id='deriveexpression'>DeriveExpression</h3><pre class="highlight plaintext"><code>context Person::income : Integer
+derive:  if underAge
+ then (parents.income-&gt;sum() * 1/100).round()
+ else job.salary-&gt;sum()
+endif
+</code></pre>
+<p>A derived value expression is an expression that may be linked to a property.
+<div class="clearboth"></div></p>
+<h3 id='enumerationexpression'>EnumerationExpression</h3>
+<p>Resolves enumeration values.
+<div class="clearboth"></div></p>
+<h3 id='ifexpression'>IfExpression</h3>
+<p>The IfExpression allows to execute a statement if the given condition is truthy.
+Otherwise the else part is taken.
+<div class="clearboth"></div></p>
+<h3 id='initexpression'>InitExpression</h3>
+<div class="clearboth"></div>
+<h3 id='invariantexpression'>InvariantExpression</h3>
+<blockquote>
+<p>The OCL expression can be part of an Invariant which is a Constraint stereotyped as an «invariant».
+When the invariant is associated with a Classifier, the latter is referred to as a “type” in this clause.
+An OCL expression is an invariant of the type and must be true for all instances of that type at any time.
+(Note that all OCL expressions that express invariants are of the type Boolean.)</p>
+</blockquote>
+<pre class="highlight plaintext"><code>context Person inv:
+self.age &gt; 0
+</code></pre>
+<div class="clearboth"></div>
+<h3 id='nativejsfunctioncallexpression'>NativeJsFunctionCallExpression</h3>
+<div class="clearboth"></div>
+<h3 id='ocliskindofexpression'>OclIsKindOfExpression</h3><pre class="highlight plaintext"><code>oclIsKindOf(type : T) : Boolean
+</code></pre>
+<p>Checks if <em>self</em> is an instance of the class identified by the name
+<div class="clearboth"></div></p>
+<h3 id='oclistypeofexpression'>OclIsTypeOfExpression</h3><pre class="highlight plaintext"><code>oclIsTypeOf(s : String) : Boolean
+</code></pre>
+<p>Checks if <em>self</em> is an instance of exact the class identified by the name
+<div class="clearboth"></div></p>
+<h3 id='oclisundefinedexpression'>OclIsUndefinedExpression</h3><pre class="highlight plaintext"><code>oclIsUndefined() : Boolean
+</code></pre>
+<p>Checks if <em>self</em> is not defined
+<div class="clearboth"></div></p>
+<h3 id='operationcallexpression'>OperationCallExpression</h3>
+<div class="clearboth"></div>
+<h3 id='packagedeclaration'>PackageDeclaration</h3>
+<p>In order to group and organise OCL constraints, packages can be used.
+<div class="clearboth"></div></p>
+<h3 id='postexpression'>PostExpression</h3>
+<p>A condition that has to be fulfilled after the operation addressed by the parent OperationCallExpression has been executed.
+<div class="clearboth"></div></p>
+<h3 id='preexpression'>PreExpression</h3>
+<p>A condition that has to be fulfilled before executing the operation addressed by the parent OperationCallExpression.
+<div class="clearboth"></div></p>
+<h3 id='variableexpression'>VariableExpression</h3>
+<p>Resolve variables. Simple values are returned as is (e.g. self.age: number), collections are aggregated.
+<div class="clearboth"></div></p>
+<h2 id='gate'>Gate</h2><h3 id='andexpression'>AndExpression</h3><pre class="highlight plaintext"><code>false and true
+</code></pre>
+<table><thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>A and B</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>false</td>
+<td>false</td>
+<td>false</td>
+</tr>
+<tr>
+<td>false</td>
+<td>true</td>
+<td>false</td>
+</tr>
+<tr>
+<td>true</td>
+<td>false</td>
+<td>false</td>
+</tr>
+<tr>
+<td>true</td>
+<td>true</td>
+<td>true</td>
+</tr>
+</tbody></table>
+
+<div class="clearboth"></div>
+<h3 id='impliesexpression'>ImpliesExpression</h3><pre class="highlight plaintext"><code>false implies true
+</code></pre>
+<table><thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>A implies B</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>false</td>
+<td>false</td>
+<td>true</td>
+</tr>
+<tr>
+<td>false</td>
+<td>true</td>
+<td>true</td>
+</tr>
+<tr>
+<td>true</td>
+<td>false</td>
+<td>false</td>
+</tr>
+<tr>
+<td>true</td>
+<td>true</td>
+<td>true</td>
+</tr>
+</tbody></table>
+
+<div class="clearboth"></div>
+<h3 id='notexpression'>NotExpression</h3><pre class="highlight plaintext"><code>not false
+</code></pre>
+<table><thead>
+<tr>
+<th>A</th>
+<th>NOT A</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>true</td>
+<td>false</td>
+</tr>
+<tr>
+<td>false</td>
+<td>true</td>
+</tr>
+</tbody></table>
+
+<div class="clearboth"></div>
+<h3 id='orexpression'>OrExpression</h3><pre class="highlight plaintext"><code>false or true
+</code></pre>
+<table><thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>A or B</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>false</td>
+<td>false</td>
+<td>false</td>
+</tr>
+<tr>
+<td>false</td>
+<td>true</td>
+<td>true</td>
+</tr>
+<tr>
+<td>true</td>
+<td>false</td>
+<td>true</td>
+</tr>
+<tr>
+<td>true</td>
+<td>true</td>
+<td>true</td>
+</tr>
+</tbody></table>
+
+<div class="clearboth"></div>
+<h3 id='xorexpression'>XorExpression</h3><pre class="highlight plaintext"><code>false xor true
+</code></pre>
+<table><thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>A xor B</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>false</td>
+<td>false</td>
+<td>false</td>
+</tr>
+<tr>
+<td>false</td>
+<td>true</td>
+<td>true</td>
+</tr>
+<tr>
+<td>true</td>
+<td>false</td>
+<td>true</td>
+</tr>
+<tr>
+<td>true</td>
+<td>true</td>
+<td>false</td>
+</tr>
+</tbody></table>
+
+<div class="clearboth"></div>
+<h2 id='literal'>Literal</h2><h3 id='booleanexpression'>BooleanExpression</h3>
+<div class="clearboth"></div>
+<h3 id='nilexpression'>NilExpression</h3>
+<div class="clearboth"></div>
+<h3 id='numberexpression'>NumberExpression</h3>
+<div class="clearboth"></div>
+<h3 id='stringexpression'>StringExpression</h3>
+<div class="clearboth"></div>
+<h2 id='math'>Math</h2><h3 id='absexpression'>AbsExpression</h3><pre class="highlight plaintext"><code>Number::abs () : Number
+</code></pre><pre class="highlight plaintext"><code>-2.abs() = 2
+</code></pre>
+<p>Returns the absolute value of self.
+<div class="clearboth"></div></p>
+<h3 id='additionexpression'>AdditionExpression</h3><pre class="highlight plaintext"><code>Symbol: +
+</code></pre><pre class="highlight plaintext"><code>1 + 2
+</code></pre>
+<p>Addition
+<div class="clearboth"></div></p>
+<h3 id='divexpression'>DivExpression</h3><pre class="highlight plaintext"><code>Number::div ( i : Number ) : Number
+</code></pre><pre class="highlight plaintext"><code>3 div 2 = 1
+</code></pre>
+<p>Returns the integer quotient of the division of self by <em>i</em>.
+<div class="clearboth"></div></p>
+<h3 id='divideexpression'>DivideExpression</h3><pre class="highlight plaintext"><code>Symbol: /
+</code></pre><pre class="highlight plaintext"><code>17 / 2
+</code></pre>
+<p>Division
+<div class="clearboth"></div></p>
+<h3 id='maxexpression'>MaxExpression</h3><pre class="highlight plaintext"><code>Number::max ( i : Number ) : Number
+</code></pre><pre class="highlight plaintext"><code>6.max(3) = 6
+</code></pre>
+<p>Returns the greatest number of self and <em>i</em>.
+<div class="clearboth"></div></p>
+<h3 id='minexpression'>MinExpression</h3><pre class="highlight plaintext"><code>Number::min ( i : Number ) : Number
+</code></pre><pre class="highlight plaintext"><code>6.max(3) = 3
+</code></pre>
+<p>Returns the lowest number of self and <em>i</em>.
+<div class="clearboth"></div></p>
+<h3 id='moduloexpression'>ModuloExpression</h3><pre class="highlight plaintext"><code>Number::mod ( i : Number ) : Number
+</code></pre><pre class="highlight plaintext"><code>4 mod 2 = 0
+</code></pre>
+<p>Returns the number remainder of the division of self by <em>i</em>.
+<div class="clearboth"></div></p>
+<h3 id='multiplyexpression'>MultiplyExpression</h3><pre class="highlight plaintext"><code>Symbol: *
+</code></pre><pre class="highlight plaintext"><code>1 * 2
+</code></pre>
+<p>Multiply
+<div class="clearboth"></div></p>
+<h3 id='powerexpression'>PowerExpression</h3><pre class="highlight plaintext"><code>Symbol: ^
+</code></pre><pre class="highlight plaintext"><code>4 ^ 2
+</code></pre>
+<p>Power
+<div class="clearboth"></div></p>
+<h3 id='roundexpression'>RoundExpression</h3><pre class="highlight plaintext"><code>Number::round () : Number
+</code></pre>
+<p>Returns the nearest number to self.
+<div class="clearboth"></div></p>
+<h3 id='sqrtexpression'>SqrtExpression</h3><pre class="highlight plaintext"><code>Number::sqrt () : Number
+</code></pre><pre class="highlight plaintext"><code>9.sqrt() = 3
+</code></pre>
+<p>Returns the square root of <em>self</em>.
+<div class="clearboth"></div></p>
+<h3 id='substractionexpression'>SubstractionExpression</h3><pre class="highlight plaintext"><code>Symbol: -
+</code></pre><pre class="highlight plaintext"><code>1 - 2
+</code></pre>
+<p>Substraction
+<div class="clearboth"></div></p>
+<h2 id='string'>String</h2><h3 id='concatexpression'>ConcatExpression</h3><pre class="highlight plaintext"><code>String::concat (s : String) : String
+</code></pre><pre class="highlight plaintext"><code>self.name.concat("string")
+</code></pre>
+<p>Returns a string that is concatenated using source and body
+<div class="clearboth"></div></p>
+<h3 id='indexofexpression'>IndexOfExpression</h3><pre class="highlight plaintext"><code>String::indexOf (s : String) : Number
+</code></pre><pre class="highlight plaintext"><code>self.name.indexOf("string")
+</code></pre>
+<p>Returns the index of the given string in self or 0 if it is not condained.
+<div class="clearboth"></div></p>
+<h3 id='substringexpression'>SubstringExpression</h3><pre class="highlight plaintext"><code>String::substring (start : Number, end : Number) : String
+</code></pre><pre class="highlight plaintext"><code>self.name.substring(0,2)
+</code></pre>
+<p>Returns a string containing all characters from self starting from index <em>start</em> up to index <em>end</em> included.
+Both <em>start</em> and <em>end</em> parameters should be contained between <em>1</em> and <em>self.size()</em> included.
+<em>start</em> cannot be greater than <em>end</em>.
+<div class="clearboth"></div></p>
+<h3 id='tointegerexpression'>ToIntegerExpression</h3><pre class="highlight plaintext"><code>String::toInteger () : Number
+</code></pre><pre class="highlight plaintext"><code>"3.414".toInteger()
+</code></pre>
+<p>Tries to convert a string to a number.
+<div class="clearboth"></div></p>
+<h3 id='tolowercaseexpression'>ToLowerCaseExpression</h3><pre class="highlight plaintext"><code>String:: toLowerCase () : String
+</code></pre><pre class="highlight plaintext"><code>self.name.toLowerCase()
+</code></pre>
+<p>Returns <em>self</em> as lower case string.
+<div class="clearboth"></div></p>
+<h3 id='torealexpression'>ToRealExpression</h3><pre class="highlight plaintext"><code>String:: toReal () : Number
+</code></pre><pre class="highlight plaintext"><code>"3.414".toReal()
+</code></pre>
+<p>Tries to convert a string to a number.
+<div class="clearboth"></div></p>
+<h3 id='touppercaseexpression'>ToUpperCaseExpression</h3><pre class="highlight plaintext"><code>String:: toUpperCase () : String
+</code></pre><pre class="highlight plaintext"><code>self.name.toUpperCase()
+</code></pre>
+<p>Returns <em>self</em> into upper case string.
+<div class="clearboth"></div></p>
+
+  </div>
+  <div class="dark-box">
+      <div class="lang-selector">
+            <a href="#" data-language-name="typescript">TypeScript</a>
+            <a href="#" data-language-name="javascript">JavaScript</a>
+      </div>
+  </div>
+</div>
+</body>
+</html>

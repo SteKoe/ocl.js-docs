@@ -10,6 +10,7 @@
 > The syntax of the attribute or operation definitions is similar to the Let expression, but each attribute and operation definition is prefixed with the keyword ‘def’ as shown below.
 
 
+
 ```
 context Person def:
 income : Integer = self.job.salary->sum()
@@ -18,9 +19,6 @@ income : Integer = self.job.salary->sum()
 
 <div class="clearboth"></div>
 ### DeriveExpression
-
-
-
 ```
 context Person::income : Integer
 derive:  if underAge
@@ -39,12 +37,14 @@ The IfExpression allows to execute a statement if the given condition is truthy.
 Otherwise the else part is taken.
 <div class="clearboth"></div>
 ### InitExpression
+
 <div class="clearboth"></div>
 ### InvariantExpression
 > The OCL expression can be part of an Invariant which is a Constraint stereotyped as an «invariant».
 > When the invariant is associated with a Classifier, the latter is referred to as a “type” in this clause.
 > An OCL expression is an invariant of the type and must be true for all instances of that type at any time.
 > (Note that all OCL expressions that express invariants are of the type Boolean.)
+
 
 
 ```
@@ -55,8 +55,10 @@ self.age > 0
 
 <div class="clearboth"></div>
 ### NativeJsFunctionCallExpression
+
 <div class="clearboth"></div>
 ### OclIsKindOfExpression
+
 
 ```ocl--example
 oclIsKindOf(type : T) : Boolean
@@ -67,6 +69,7 @@ Checks if *self* is an instance of the class identified by the name
 <div class="clearboth"></div>
 ### OclIsTypeOfExpression
 
+
 ```ocl--example
 oclIsTypeOf(s : String) : Boolean
 ```
@@ -76,6 +79,7 @@ Checks if *self* is an instance of exact the class identified by the name
 <div class="clearboth"></div>
 ### OclIsUndefinedExpression
 
+
 ```ocl--example
 oclIsUndefined() : Boolean
 ```
@@ -84,6 +88,7 @@ oclIsUndefined() : Boolean
 Checks if *self* is not defined
 <div class="clearboth"></div>
 ### OperationCallExpression
+
 <div class="clearboth"></div>
 ### PackageDeclaration
 In order to group and organise OCL constraints, packages can be used.

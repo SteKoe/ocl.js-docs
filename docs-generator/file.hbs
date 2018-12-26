@@ -1,0 +1,17 @@
+## {{groupName}}
+
+{{#each group}}
+### {{title}}
+{{#if content.citeOclSpecificaton}}{{{content.citeOclSpecificaton}}}{{/if}}
+
+{{#if content.oclExpression}}{{{content.oclExpression}}}{{/if}}
+
+{{#if content.oclExample}}
+```
+{{{content.oclExample}}}
+```
+{{/if}}
+
+{{#if content.description}}{{content.description}}{{/if}}
+<div class="clearboth"></div>
+{{/each}}
