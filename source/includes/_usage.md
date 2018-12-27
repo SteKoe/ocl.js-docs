@@ -34,7 +34,6 @@ const oclResult = oclEngine.evaluate(new Person());
 
 // Prints 'true' to console!
 console.log(oclResult.getResult());
-
 ```
 
 ```javascript
