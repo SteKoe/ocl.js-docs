@@ -1,7 +1,7 @@
 # Unique header generation
 require './lib/unique_head.rb'
 
-@ocl_version = '1.2.0'
+@ocl_version = '1.3.0-SNAPSHOT'
 set :ocl_version, @ocl_version
 
 # Markdown
