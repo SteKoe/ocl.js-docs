@@ -11,7 +11,11 @@ As alternative, you can also download the ocl.min.js file from GitHub and includ
 
 ## Example: Basic usage
 ```typescript
-import { OCLEngine } from "@stekoe/ocl.js"
+import { OclEngine } from '@stekoe/ocl.js';
+
+class Person {
+  private parents = [];
+}
 
 // Define OCL rule
 const myOclExpression = `
@@ -26,11 +30,23 @@ const oclEngine = OclEngine.create();
 oclEngine.addOclExpression(myOclExpression);
 
 // Evaluate an object obj against all know OCL expressions
-const oclResult = oclEngine.evaluate(obj);
+const oclResult = oclEngine.evaluate(new Person());
+
+// Prints 'true' to console!
+console.log(oclResult.getResult());
+
 ```
+
 ```javascript
 const OclEngine = require("@stekoe/ocl.js").OclEngine;
 
+// A simple class that represents a person
+class Person {
+  constructor() {
+    this.parents = [];
+  }
+}
+
 // Define OCL rule
 const myOclExpression = `
     context Person
@@ -44,7 +60,10 @@ const oclEngine = OclEngine.create();
 oclEngine.addOclExpression(myOclExpression);
 
 // Evaluate an object obj against all know OCL expressions
-const oclResult = oclEngine.evaluate(obj);
+const oclResult = oclEngine.evaluate(new Person());
+
+// Prints 'true' to console!
+console.log(oclResult.getResult());
 ```
 
 When adding OCL.js via npm, you can start using it via importing the OCLEngine that is provided by “@stekoe/ocl.js”.
