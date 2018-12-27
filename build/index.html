@@ -308,7 +308,7 @@
   </ul>
     <ul class="toc-footer">
         <li class="text-italic">
-          v1.2.0
+          v1.3.0-SNAPSHOT
         </li>
         <li><a href='https://github.com/SteKoe/ocl.js'>Source Code at GitHub</a></li>
     </ul>
@@ -341,7 +341,11 @@ The OCL is a text based language that provides constraint and object query expre
 It is designed to run either in an node environment or in the browser.</p>
 
 <p>As alternative, you can also download the ocl.min.js file from GitHub and include that to your code.</p>
-<h2 id='example-basic-usage'>Example: Basic usage</h2><pre class="highlight typescript tab-typescript typescript"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">OCLEngine</span> <span class="p">}</span> <span class="k">from</span> <span class="s2">"@stekoe/ocl.js"</span>
+<h2 id='example-basic-usage'>Example: Basic usage</h2><pre class="highlight typescript tab-typescript typescript"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">OclEngine</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">'@stekoe/ocl.js'</span><span class="p">;</span>
+
+<span class="kr">class</span> <span class="nx">Person</span> <span class="p">{</span>
+  <span class="k">private</span> <span class="nx">parents</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="p">}</span>
 
 <span class="c1">// Define OCL rule</span>
 <span class="kd">const</span> <span class="nx">myOclExpression</span> <span class="o">=</span> <span class="s2">`
@@ -356,8 +360,18 @@ It is designed to run either in an node environment or in the browser.</p>
 <span class="nx">oclEngine</span><span class="p">.</span><span class="nx">addOclExpression</span><span class="p">(</span><span class="nx">myOclExpression</span><span class="p">);</span>
 
 <span class="c1">// Evaluate an object obj against all know OCL expressions</span>
-<span class="kd">const</span> <span class="nx">oclResult</span> <span class="o">=</span> <span class="nx">oclEngine</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">oclResult</span> <span class="o">=</span> <span class="nx">oclEngine</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="k">new</span> <span class="nx">Person</span><span class="p">());</span>
+
+<span class="c1">// Prints 'true' to console!</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">oclResult</span><span class="p">.</span><span class="nx">getResult</span><span class="p">());</span>
 </code></pre><pre class="highlight javascript tab-javascript javascript"><code><span class="kr">const</span> <span class="nx">OclEngine</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"@stekoe/ocl.js"</span><span class="p">).</span><span class="nx">OclEngine</span><span class="p">;</span>
+
+<span class="c1">// A simple class that represents a person</span>
+<span class="kr">class</span> <span class="nx">Person</span> <span class="p">{</span>
+  <span class="nx">constructor</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">parents</span> <span class="o">=</span> <span class="p">[];</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 
 <span class="c1">// Define OCL rule</span>
 <span class="kr">const</span> <span class="nx">myOclExpression</span> <span class="o">=</span> <span class="s2">`
@@ -372,7 +386,10 @@ It is designed to run either in an node environment or in the browser.</p>
 <span class="nx">oclEngine</span><span class="p">.</span><span class="nx">addOclExpression</span><span class="p">(</span><span class="nx">myOclExpression</span><span class="p">);</span>
 
 <span class="c1">// Evaluate an object obj against all know OCL expressions</span>
-<span class="kr">const</span> <span class="nx">oclResult</span> <span class="o">=</span> <span class="nx">oclEngine</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">oclResult</span> <span class="o">=</span> <span class="nx">oclEngine</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="k">new</span> <span class="nx">Person</span><span class="p">());</span>
+
+<span class="c1">// Prints 'true' to console!</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">oclResult</span><span class="p">.</span><span class="nx">getResult</span><span class="p">());</span>
 </code></pre>
 <p>When adding OCL.js via npm, you can start using it via importing the OCLEngine that is provided by “@stekoe/ocl.js”.</p>
 
@@ -470,7 +487,10 @@ As a result an object is returned that offers three methods:</p>
 Hence, OCL.js can also be used to query objects, as well, without having the need to run an evaluation.</p>
 <h2 id='evaluatequery-obj-any-oclexpression-expression-any'>evaluateQuery(obj : any, oclExpression : Expression) : any</h2>
 <p>Runs the given <code>oclExpression</code> on the object <code>obj</code>.</p>
-<h1 id='examples'>Examples</h1><h2 id='company'>Company</h2><pre class="highlight typescript tab-typescript--example typescript--example"><code><span class="k">export</span> <span class="kr">class</span> <span class="nx">Company</span> <span class="p">{</span>
+<h1 id='examples'>Examples</h1>
+<p>Despite the examples shown below, there are some examples included in the OCL.js respository.
+You can find examples for either <a href="https://github.com/SteKoe/ocl.js/tree/development/examples/node.js">Node.js</a> or <a href="https://github.com/SteKoe/ocl.js/tree/development/examples/webpack">webpack</a>.</p>
+<h2 id='company'>Company</h2><pre class="highlight typescript tab-typescript--example typescript--example"><code><span class="k">export</span> <span class="kr">class</span> <span class="nx">Company</span> <span class="p">{</span>
     <span class="nl">name</span> <span class="p">:</span> <span class="nb">String</span><span class="p">;</span>
     <span class="nl">employee</span><span class="p">:</span> <span class="nx">Person</span><span class="p">[];</span>
     <span class="nl">manager</span><span class="p">:</span> <span class="nx">Person</span><span class="p">;</span>
@@ -731,57 +751,151 @@ self.age &gt; 0
 <div class="clearboth"></div></p>
 <h2 id='gate'>Gate</h2><h3 id='andexpression'>AndExpression</h3><pre class="highlight plaintext"><code>false and true
 </code></pre>
-<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;    &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;   &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
-A        B       A and B
-&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;    &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;   &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
-false    false   false
-false    true    false
-true     false   false
-true     true    true
-&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;    &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;   &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
-<div class="clearboth"></div></p>
+<table><thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>A and B</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>false</td>
+<td>false</td>
+<td>false</td>
+</tr>
+<tr>
+<td>false</td>
+<td>true</td>
+<td>false</td>
+</tr>
+<tr>
+<td>true</td>
+<td>false</td>
+<td>false</td>
+</tr>
+<tr>
+<td>true</td>
+<td>true</td>
+<td>true</td>
+</tr>
+</tbody></table>
+
+<div class="clearboth"></div>
 <h3 id='impliesexpression'>ImpliesExpression</h3><pre class="highlight plaintext"><code>false implies true
 </code></pre>
-<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;    &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;   &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
-A        B       A implies B
-&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;    &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;   &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
-false    false   true
-false    true    true
-true     false   false
-true     true    true
-&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;    &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;   &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
-<div class="clearboth"></div></p>
+<table><thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>A implies B</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>false</td>
+<td>false</td>
+<td>true</td>
+</tr>
+<tr>
+<td>false</td>
+<td>true</td>
+<td>true</td>
+</tr>
+<tr>
+<td>true</td>
+<td>false</td>
+<td>false</td>
+</tr>
+<tr>
+<td>true</td>
+<td>true</td>
+<td>true</td>
+</tr>
+</tbody></table>
+
+<div class="clearboth"></div>
 <h3 id='notexpression'>NotExpression</h3><pre class="highlight plaintext"><code>not false
 </code></pre>
-<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;    &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
-A        NOT A
-&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;    &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
-true     false
-false    true
-&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;    &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
-<div class="clearboth"></div></p>
+<table><thead>
+<tr>
+<th>A</th>
+<th>NOT A</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>true</td>
+<td>false</td>
+</tr>
+<tr>
+<td>false</td>
+<td>true</td>
+</tr>
+</tbody></table>
+
+<div class="clearboth"></div>
 <h3 id='orexpression'>OrExpression</h3><pre class="highlight plaintext"><code>false or true
 </code></pre>
-<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;    &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;   &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
-A        B       A or B
-&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;    &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;   &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
-false    false   false
-false    true    true
-true     false   true
-true     true    true
-&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;    &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;   &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
-<div class="clearboth"></div></p>
+<table><thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>A or B</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>false</td>
+<td>false</td>
+<td>false</td>
+</tr>
+<tr>
+<td>false</td>
+<td>true</td>
+<td>true</td>
+</tr>
+<tr>
+<td>true</td>
+<td>false</td>
+<td>true</td>
+</tr>
+<tr>
+<td>true</td>
+<td>true</td>
+<td>true</td>
+</tr>
+</tbody></table>
+
+<div class="clearboth"></div>
 <h3 id='xorexpression'>XorExpression</h3><pre class="highlight plaintext"><code>false xor true
 </code></pre>
-<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;    &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;   &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
-A        B       A xor B
-&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;    &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;   &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
-false    false   false
-false    true    true
-true     false   true
-true     true    false
-&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;    &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;   &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
-<div class="clearboth"></div></p>
+<table><thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>A xor B</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>false</td>
+<td>false</td>
+<td>false</td>
+</tr>
+<tr>
+<td>false</td>
+<td>true</td>
+<td>true</td>
+</tr>
+<tr>
+<td>true</td>
+<td>false</td>
+<td>true</td>
+</tr>
+<tr>
+<td>true</td>
+<td>true</td>
+<td>false</td>
+</tr>
+</tbody></table>
+
+<div class="clearboth"></div>
 <h2 id='literal'>Literal</h2><h3 id='booleanexpression'>BooleanExpression</h3>
 <div class="clearboth"></div>
 <h3 id='nilexpression'>NilExpression</h3>
